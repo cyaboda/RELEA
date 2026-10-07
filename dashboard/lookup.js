@@ -48,21 +48,37 @@ const sourceEls = {
   musicbrainz: document.getElementById('sourceMusicBrainz')
 };
 
+
+const requiredLookupNodes = {
+  realUpcForm: form,
+  realUpc: input,
+  searchReleaseBtn: btn,
+  lookupMessage: message,
+  lookupResult: result
+};
+
+Object.entries(requiredLookupNodes).forEach(([name, node]) => {
+  if(!node) console.error(`[RELEA] Elemento requerido no encontrado: #${name}`);
+});
+
 let lastResolvedRelease = null;
 
 function setLoading(loading){
-  btn.disabled = loading;
-  btnText.textContent = loading ? 'Buscando en varias fuentes…' : 'Buscar lanzamiento';
-  spinner.hidden = !loading;
+  if(btn) btn.disabled = loading;
+  if(btnText) btnText.textContent = loading ? 'Buscando en varias fuentes…' : 'Buscar lanzamiento';
+  if(spinner) spinner.hidden = !loading;
 }
 
 function showMessage(text, type='error'){
+  if(!message) return;
   message.textContent = text;
   message.className = 'lookup-message ' + type;
   message.hidden = false;
 }
 
-function clearMessage(){ message.hidden = true; }
+function clearMessage(){
+  if(message) message.hidden = true;
+}
 
 function normalizeCode(value){
   return value.trim().replace(/\s+/g,'').toUpperCase();
@@ -319,10 +335,15 @@ async function musicBrainzLookup(code, type){
 
 function setSourceState(name, state, text){
   const el = sourceEls[name];
+  if(!el) return;
   el.classList.remove('pending','found','miss');
   el.classList.add(state);
-  el.querySelector('span').textContent = text;
-  el.querySelector('b').textContent = state === 'found' ? '✓' : state === 'miss' ? '—' : '•••';
+
+  const statusText = el.querySelector('div > span');
+  const statusMark = el.querySelector('b');
+
+  if(statusText) statusText.textContent = text;
+  if(statusMark) statusMark.textContent = state === 'found' ? '✓' : state === 'miss' ? '—' : '•••';
 }
 
 function resetSources(){
@@ -381,21 +402,25 @@ function buildStoreLinks(release, candidates){
   const raw = `${release.artist} ${release.title}`.trim();
   const q = encodeURIComponent(raw);
 
-  spotifySearch.href = `https://open.spotify.com/search/${q}`;
-  youtubeSearch.href = `https://music.youtube.com/search?q=${q}`;
-  tidalSearch.href = `https://listen.tidal.com/search?q=${q}`;
-  amazonSearch.href = `https://music.amazon.com/search/${q}`;
-  soundcloudSearch.href = `https://soundcloud.com/search?q=${q}`;
-  bandcampSearch.href = `https://bandcamp.com/search?q=${q}`;
+  if(spotifySearch) spotifySearch.href = `https://open.spotify.com/search/${q}`;
+  if(youtubeSearch) youtubeSearch.href = `https://music.youtube.com/search?q=${q}`;
+  if(tidalSearch) tidalSearch.href = `https://listen.tidal.com/search?q=${q}`;
+  if(amazonSearch) amazonSearch.href = `https://music.amazon.com/search/${q}`;
+  if(soundcloudSearch) soundcloudSearch.href = `https://soundcloud.com/search?q=${q}`;
+  if(bandcampSearch) bandcampSearch.href = `https://bandcamp.com/search?q=${q}`;
 
   const apple = candidates.find(x => x.source === 'apple' && x.exactUrl);
   if(apple){
-    appleSearch.href = apple.exactUrl;
-    appleSearch.textContent = 'Abrir ↗';
+    if(appleSearch){
+      appleSearch.href = apple.exactUrl;
+      appleSearch.textContent = 'Abrir ↗';
+    }
     if(appleDestinationStatus) appleDestinationStatus.textContent = 'Enlace exacto encontrado';
   }else{
-    appleSearch.href = `https://music.apple.com/us/search?term=${q}`;
-    appleSearch.textContent = 'Buscar ↗';
+    if(appleSearch){
+      appleSearch.href = `https://music.apple.com/us/search?term=${q}`;
+      appleSearch.textContent = 'Buscar ↗';
+    }
     if(appleDestinationStatus) appleDestinationStatus.textContent = 'Búsqueda preparada';
   }
 
@@ -414,51 +439,60 @@ function buildStoreLinks(release, candidates){
 }
 
 function showRelease(release, candidates, code, type){
-  titleEl.textContent = release.title || 'Sin título';
-  artistEl.textContent = release.artist || 'Artista desconocido';
-  barcodeEl.textContent = type === 'upc' ? (release.upc || code) : (release.isrc || code);
-  dateEl.textContent = release.date || '—';
-  tracksEl.textContent = release.tracks || '—';
-  countryEl.textContent = release.country || '—';
+  if(titleEl) titleEl.textContent = release.title || 'Sin título';
+  if(artistEl) artistEl.textContent = release.artist || 'Artista desconocido';
+  if(barcodeEl) barcodeEl.textContent = type === 'upc' ? (release.upc || code) : (release.isrc || code);
+  if(dateEl) dateEl.textContent = release.date || '—';
+  if(tracksEl) tracksEl.textContent = release.tracks || '—';
+  if(countryEl) countryEl.textContent = release.country || '—';
 
   const tracks = Number(release.tracks);
-  if(tracks === 1) typeEl.textContent = 'Single';
-  else if(tracks > 1 && tracks <= 6) typeEl.textContent = 'EP / Release';
-  else if(tracks > 6) typeEl.textContent = 'Álbum';
-  else typeEl.textContent = type === 'isrc' ? 'Grabación / Release' : 'Release';
+  if(typeEl){
+    if(tracks === 1) typeEl.textContent = 'Single';
+    else if(tracks > 1 && tracks <= 6) typeEl.textContent = 'EP / Release';
+    else if(tracks > 6) typeEl.textContent = 'Álbum';
+    else typeEl.textContent = type === 'isrc' ? 'Grabación / Release' : 'Release';
+  }
 
-  coverArt.hidden = true;
-  coverFallback.hidden = false;
+  if(coverArt) coverArt.hidden = true;
+  if(coverFallback) coverFallback.hidden = false;
+
   const art = release.artwork || '';
-  if(art){
+  if(art && coverArt){
     coverArt.src = art;
     coverArt.onload = () => {
       coverArt.hidden = false;
-      coverFallback.hidden = true;
+      if(coverFallback) coverFallback.hidden = true;
     };
   }else{
     const mb = candidates.find(x => x.source === 'musicbrainz' && x.releaseId);
-    if(mb){
+    if(mb && coverArt){
       const url = `https://coverartarchive.org/release/${mb.releaseId}/front-500`;
       coverArt.src = url;
       coverArt.onload = () => {
         coverArt.hidden = false;
-        coverFallback.hidden = true;
+        if(coverFallback) coverFallback.hidden = true;
       };
     }
   }
 
   const confidence = agreementScore(candidates);
-  confidenceBadge.textContent = confidence.label;
-  confidenceBadge.className = `confidence-badge ${confidence.cls}`;
-  sourceCount.textContent = `${candidates.length} fuente${candidates.length===1?'':'s'} con resultado`;
+  if(confidenceBadge){
+    confidenceBadge.textContent = confidence.label;
+    confidenceBadge.className = `confidence-badge ${confidence.cls}`;
+  }
+  if(sourceCount){
+    sourceCount.textContent = `${candidates.length} fuente${candidates.length===1?'':'s'} con resultado`;
+  }
 
   buildStoreLinks(release, candidates);
   lastResolvedRelease = {release, candidates, code, type};
 
-  step2.classList.add('active');
-  result.hidden = false;
-  result.scrollIntoView({behavior:'smooth', block:'start'});
+  if(step2) step2.classList.add('active');
+  if(result){
+    result.hidden = false;
+    result.scrollIntoView({behavior:'smooth', block:'start'});
+  }
 }
 
 form.addEventListener('submit', async (e) => {
@@ -569,19 +603,21 @@ function validHttpUrl(value){
 
 function openManualEditor(platform=''){
   manualEditingPlatform = platform;
-  manualPlatformTitle.textContent = platform ? `Agregar URL de ${platform}` : 'Agregar plataforma';
-  manualPlatformName.value = platform || '';
-  manualPlatformName.readOnly = Boolean(platform);
-  manualPlatformUrl.value = manualPlatformLinks[platform] || '';
-  manualPlatformMessage.hidden = true;
-  manualEditor.hidden = false;
-  manualPlatformUrl.focus();
+  if(manualPlatformTitle) manualPlatformTitle.textContent = platform ? `Agregar URL de ${platform}` : 'Agregar plataforma';
+  if(manualPlatformName){
+    manualPlatformName.value = platform || '';
+    manualPlatformName.readOnly = Boolean(platform);
+  }
+  if(manualPlatformUrl) manualPlatformUrl.value = manualPlatformLinks[platform] || '';
+  if(manualPlatformMessage) manualPlatformMessage.hidden = true;
+  if(manualEditor) manualEditor.hidden = false;
+  if(manualPlatformUrl) manualPlatformUrl.focus();
 }
 
 function closeManualEditor(){
-  manualEditor.hidden = true;
+  if(manualEditor) manualEditor.hidden = true;
   manualEditingPlatform = '';
-  manualPlatformName.readOnly = false;
+  if(manualPlatformName) manualPlatformName.readOnly = false;
 }
 
 document.getElementById('addManualPlatformBtn')?.addEventListener('click', () => openManualEditor(''));
