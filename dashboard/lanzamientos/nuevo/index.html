@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="../../../favicon.png">
+<link rel="stylesheet" href="../../dashboard.css">
+<title>Nuevo lanzamiento — RELEA</title>
+</head>
+<body>
+<div class="dashboard-shell">
+<aside class="dashboard-sidebar">
+  <a class="dashboard-brand" href="../../">
+    <img src="../../../LOGO.png" alt="RELEA">
+  </a>
+
+  <nav class="dashboard-nav">
+    <a href="../../"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.5 9.8V21h13V9.8"></path></svg>
+    </span><span>Inicio</span></a>
+
+    <a class="active" href="../"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 9h8"></path><path d="M8 13h8"></path></svg>
+    </span><span>Lanzamientos</span></a>
+
+    <a href="../../smart-links/"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 1 0-7l1.2-1.2a5 5 0 1 1 7.1 7.1L17 13"></path><path d="M14 11a5 5 0 0 1 0 7l-1.2 1.2a5 5 0 1 1-7.1-7.1L7 11"></path></svg>
+    </span><span>Smart Links</span></a>
+
+    <a href="../../campanas/"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M4 15V9"></path><path d="M8 17V7"></path><path d="M12 14V10"></path><path d="M16 19V5"></path><path d="M20 13V11"></path></svg>
+    </span><span>Campañas</span></a>
+
+    <a href="../../audiencia/"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M16 19a4 4 0 0 0-8 0"></path><circle cx="12" cy="11" r="3.2"></circle><path d="M6.5 18a3.5 3.5 0 0 0-3-2.4"></path><path d="M17.5 18a3.5 3.5 0 0 1 3-2.4"></path></svg>
+    </span><span>Audiencia</span></a>
+
+    <a href="../../estadisticas/"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M5 18V9"></path><path d="M10 18V5"></path><path d="M15 18v-7"></path><path d="M20 18v-4"></path></svg>
+    </span><span>Estadísticas</span></a>
+
+    <a href="../../ajustes/"><span class="nav-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
+    </span><span>Ajustes</span></a>
+  </nav>
+
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-profile">
+    <div class="profile-avatar">BR</div>
+    <div class="profile-copy">
+      <strong>Brainstorm</strong>
+      <span>Cuenta demo</span>
+    </div>
+  </div>
+</aside>
+
+<main class="dashboard-main">
+  <header class="dashboard-topbar">
+    <div class="page-heading">
+      <div class="eyebrow">Lanzamientos</div>
+      <h1>Nuevo lanzamiento</h1>
+      <p>Importa tu música usando el UPC del release.</p>
+    </div>
+  </header>
+
+  <section class="import-layout">
+    <div class="import-card">
+      <div class="import-step">Paso 1 de 3</div>
+      <h2>Busca tu lanzamiento</h2>
+      <p>Introduce el UPC. RELEA usará este código para localizar el lanzamiento y sus plataformas.</p>
+
+      <form id="upcForm" class="upc-form">
+        <label for="upc">Código UPC</label>
+        <div class="upc-input-row">
+          <input id="upc" name="upc" type="text" inputmode="numeric" maxlength="14" placeholder="Ej. 123456789012" autocomplete="off" required>
+          <button class="db-button primary" type="submit">Buscar lanzamiento</button>
+        </div>
+        <small>Normalmente encontrarás el UPC en tu distribuidora.</small>
+      </form>
+
+      <div id="upcError" class="import-message error" hidden></div>
+    </div>
+
+    <div id="releaseResult" class="import-result" hidden>
+      <div class="import-result-head">
+        <div>
+          <div class="import-step">Resultado encontrado</div>
+          <h2>Revisa la información</h2>
+        </div>
+        <span class="found-badge">Encontrado</span>
+      </div>
+
+      <div class="release-preview-card">
+        <div class="release-preview-art"></div>
+        <div class="release-preview-copy">
+          <span class="release-type">Single</span>
+          <h3>DON'T CALL ME</h3>
+          <p>Brainstorm</p>
+
+          <div class="release-detail-grid">
+            <div><span>UPC</span><strong id="resultUPC">123456789012</strong></div>
+            <div><span>Fecha</span><strong>Próximamente</strong></div>
+            <div><span>Tracks</span><strong>1</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-detection">
+        <div class="section-mini-head">
+          <div>
+            <span class="import-step">Plataformas</span>
+            <h3>Enlaces detectados</h3>
+          </div>
+          <span class="platform-count">3 encontradas</span>
+        </div>
+
+        <div class="detected-platforms">
+          <div class="detected-platform">
+            <img src="../../../spotify.webp" alt="Spotify">
+            <span>Spotify</span>
+            <strong>✓</strong>
+          </div>
+          <div class="detected-platform">
+            <img src="../../../apple.webp" alt="Apple Music">
+            <span>Apple Music</span>
+            <strong>✓</strong>
+          </div>
+          <div class="detected-platform">
+            <img src="../../../youtube.webp" alt="YouTube Music">
+            <span>YouTube Music</span>
+            <strong>✓</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="import-actions">
+        <button id="backButton" class="db-button" type="button">Buscar otro UPC</button>
+        <button class="db-button primary" type="button">Guardar y continuar →</button>
+      </div>
+    </div>
+
+    <aside class="import-aside">
+      <div class="tip-card">
+        <div class="tip-icon">i</div>
+        <h3>¿Qué es un UPC?</h3>
+        <p>Es el identificador único de un single, EP o álbum. Tu distribuidora asigna uno a cada lanzamiento.</p>
+      </div>
+
+      <div class="flow-card">
+        <span class="import-step">Flujo RELEA</span>
+        <div class="flow-item active"><span>1</span><div><strong>Buscar</strong><small>UPC del lanzamiento</small></div></div>
+        <div class="flow-item"><span>2</span><div><strong>Revisar</strong><small>Datos y plataformas</small></div></div>
+        <div class="flow-item"><span>3</span><div><strong>Guardar</strong><small>Crear en tu catálogo</small></div></div>
+      </div>
+    </aside>
+  </section>
+</main>
+</div>
+
+<script>
+const form = document.getElementById('upcForm');
+const input = document.getElementById('upc');
+const result = document.getElementById('releaseResult');
+const errorBox = document.getElementById('upcError');
+const resultUPC = document.getElementById('resultUPC');
+const backButton = document.getElementById('backButton');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const value = input.value.replace(/\D/g, '');
+
+  if (value.length < 12 || value.length > 14) {
+    errorBox.textContent = 'Introduce un UPC válido de 12 a 14 dígitos.';
+    errorBox.hidden = false;
+    result.hidden = true;
+    return;
+  }
+
+  errorBox.hidden = true;
+  resultUPC.textContent = value;
+  result.hidden = false;
+  result.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+
+backButton.addEventListener('click', () => {
+  result.hidden = true;
+  input.value = '';
+  input.focus();
+});
+</script>
+</body>
+</html>
