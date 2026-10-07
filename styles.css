@@ -173,20 +173,16 @@ a{text-decoration:none;color:inherit}
   padding:18px 16px;
 }
 .preview-brand{
-  display:flex;align-items:center;gap:10px;
-  font-size:14px;font-weight:700;letter-spacing:.18em;margin-bottom:18px
+  display:flex;align-items:center;
+  margin-bottom:18px;
 }
-.preview-brand-icon{
-  width:28px;height:18px;display:grid;grid-auto-flow:column;gap:3px;align-items:center
+.preview-logo{
+  display:block;
+  width:114px;
+  height:auto;
+  object-fit:contain;
+  filter:brightness(1.12);
 }
-.preview-brand-icon span{
-  display:block;width:4px;border-radius:999px;background:#f1ede8
-}
-.preview-brand-icon span:nth-child(1){height:9px;opacity:.68}
-.preview-brand-icon span:nth-child(2){height:15px;opacity:.86}
-.preview-brand-icon span:nth-child(3){height:18px}
-.preview-brand-icon span:nth-child(4){height:15px;opacity:.86}
-.preview-brand-icon span:nth-child(5){width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:10px solid #f1ede8;background:none}
 .menu{display:grid;gap:10px}
 .menu-item{
   display:flex;align-items:center;gap:12px;
@@ -194,8 +190,25 @@ a{text-decoration:none;color:inherit}
   color:#c0b9b1;font-size:14px;
 }
 .menu-item.active{background:rgba(255,255,255,.07);color:#fff}
-.menu-dot{
-  width:18px;height:18px;border-radius:6px;background:rgba(255,255,255,.12)
+.menu-item.active .menu-icon{
+  background:rgba(255,255,255,.09);
+  border-color:rgba(255,255,255,.08);
+}
+.menu-icon{
+  width:22px;
+  height:22px;
+  border-radius:7px;
+  display:grid;
+  place-items:center;
+  flex:0 0 22px;
+  color:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.04);
+}
+.menu-icon svg{
+  width:14px;
+  height:14px;
+  display:block;
 }
 
 .release-panel,.platform-panel{
@@ -288,15 +301,22 @@ a{text-decoration:none;color:inherit}
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.05);
 }
-.platform-icon{
-  width:35px;height:35px;border-radius:50%;
-  display:grid;place-items:center;
-  color:#fff;font-size:13px;font-weight:700
+.platform-logo-box{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.06);
+  overflow:hidden;
 }
-.spotify{background:#1DB954}
-.apple{background:#f04b72}
-.youtube{background:#ff2d2d}
-.deezer{background:#8f42ff}
+.platform-logo{
+  width:24px;
+  height:24px;
+  object-fit:contain;
+  display:block;
+}
 .platform-name{font-size:16px;color:#ece7e0}
 .platform-check{
   width:28px;height:28px;border-radius:50%;
