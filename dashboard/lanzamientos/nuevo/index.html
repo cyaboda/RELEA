@@ -162,23 +162,123 @@
             <div>
               <span class="section-label">PLATAFORMAS</span>
               <h3>Enlaces del lanzamiento</h3>
-              <p>Cuando una fuente devuelve un enlace exacto lo usamos; si no, abrimos una búsqueda preparada.</p>
+              <p>RELEA intenta encontrar coincidencias. Si falta una tienda, puedes pegar su URL manualmente.</p>
+            </div>
+            <button id="addManualPlatformBtn" class="mini-action" type="button">+ Agregar plataforma</button>
+          </div>
+
+          <div id="platformDestinationGrid" class="platform-destination-grid">
+            <div class="destination-card" data-platform="spotify">
+              <div class="destination-brand">
+                <img src="../../../spotify.webp" alt="Spotify">
+                <div><strong>Spotify</strong><span class="destination-status">Búsqueda preparada</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="spotifySearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="Spotify">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="apple">
+              <div class="destination-brand">
+                <img src="../../../apple.webp" alt="Apple Music">
+                <div><strong>Apple Music</strong><span id="appleDestinationStatus" class="destination-status">Búsqueda preparada</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="appleSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="Apple Music">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="youtube">
+              <div class="destination-brand">
+                <img src="../../../youtube.webp" alt="YouTube Music">
+                <div><strong>YouTube Music</strong><span class="destination-status">Búsqueda preparada</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="youtubeSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="YouTube Music">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="deezer">
+              <div class="destination-brand">
+                <div class="platform-fallback-logo deezer-bg">D</div>
+                <div><strong>Deezer</strong><span id="deezerDestinationStatus" class="destination-status">Buscando coincidencia</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="deezerOpen" class="destination-open disabled" href="#" target="_blank" rel="noopener">Abrir ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="Deezer">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="tidal">
+              <div class="destination-brand">
+                <div class="platform-fallback-logo">T</div>
+                <div><strong>TIDAL</strong><span class="destination-status">Sin coincidencia automática</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="tidalSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="TIDAL">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="amazon">
+              <div class="destination-brand">
+                <div class="platform-fallback-logo">a</div>
+                <div><strong>Amazon Music</strong><span class="destination-status">Sin coincidencia automática</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="amazonSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="Amazon Music">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="soundcloud">
+              <div class="destination-brand">
+                <div class="platform-fallback-logo">SC</div>
+                <div><strong>SoundCloud</strong><span class="destination-status">Sin coincidencia automática</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="soundcloudSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="SoundCloud">Pegar URL</button>
+              </div>
+            </div>
+
+            <div class="destination-card" data-platform="bandcamp">
+              <div class="destination-brand">
+                <div class="platform-fallback-logo">B</div>
+                <div><strong>Bandcamp</strong><span class="destination-status">Sin coincidencia automática</span></div>
+              </div>
+              <div class="destination-actions">
+                <a id="bandcampSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
+                <button class="destination-edit" type="button" data-edit-platform="Bandcamp">Pegar URL</button>
+              </div>
             </div>
           </div>
 
-          <div class="platform-search-grid">
-            <a id="spotifySearch" class="store-search-card" href="#" target="_blank" rel="noopener">
-              <img src="../../../spotify.webp" alt="Spotify">
-              <div><strong>Spotify</strong><span id="spotifyLinkLabel">Buscar release ↗</span></div>
-            </a>
-            <a id="appleSearch" class="store-search-card" href="#" target="_blank" rel="noopener">
-              <img src="../../../apple.webp" alt="Apple Music">
-              <div><strong>Apple Music</strong><span id="appleLinkLabel">Buscar release ↗</span></div>
-            </a>
-            <a id="youtubeSearch" class="store-search-card" href="#" target="_blank" rel="noopener">
-              <img src="../../../youtube.webp" alt="YouTube Music">
-              <div><strong>YouTube Music</strong><span id="youtubeLinkLabel">Buscar release ↗</span></div>
-            </a>
+          <div id="manualPlatformEditor" class="manual-platform-editor" hidden>
+            <div class="manual-editor-head">
+              <div>
+                <span class="section-label">ENLACE MANUAL</span>
+                <h4 id="manualPlatformTitle">Agregar plataforma</h4>
+              </div>
+              <button id="closeManualEditor" class="manual-close" type="button">×</button>
+            </div>
+
+            <div class="manual-editor-fields">
+              <div class="manual-field">
+                <label for="manualPlatformName">Plataforma</label>
+                <input id="manualPlatformName" type="text" placeholder="Ej. Qobuz">
+              </div>
+              <div class="manual-field manual-url-field">
+                <label for="manualPlatformUrl">URL del lanzamiento</label>
+                <input id="manualPlatformUrl" type="url" placeholder="https://...">
+              </div>
+              <button id="saveManualPlatform" class="db-button primary" type="button">Guardar URL</button>
+            </div>
+
+            <div id="manualPlatformMessage" class="manual-platform-message" hidden></div>
           </div>
         </div>
 

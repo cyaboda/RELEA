@@ -25,6 +25,23 @@ const spotifySearch = document.getElementById('spotifySearch');
 const appleSearch = document.getElementById('appleSearch');
 const youtubeSearch = document.getElementById('youtubeSearch');
 const appleLinkLabel = document.getElementById('appleLinkLabel');
+const appleDestinationStatus = document.getElementById('appleDestinationStatus');
+const deezerDestinationStatus = document.getElementById('deezerDestinationStatus');
+const deezerOpen = document.getElementById('deezerOpen');
+const tidalSearch = document.getElementById('tidalSearch');
+const amazonSearch = document.getElementById('amazonSearch');
+const soundcloudSearch = document.getElementById('soundcloudSearch');
+const bandcampSearch = document.getElementById('bandcampSearch');
+
+const manualEditor = document.getElementById('manualPlatformEditor');
+const manualPlatformTitle = document.getElementById('manualPlatformTitle');
+const manualPlatformName = document.getElementById('manualPlatformName');
+const manualPlatformUrl = document.getElementById('manualPlatformUrl');
+const manualPlatformMessage = document.getElementById('manualPlatformMessage');
+let manualEditingPlatform = '';
+
+const manualPlatformLinks = {};
+
 
 const sourceEls = {
   apple: document.getElementById('sourceApple'),
@@ -362,17 +379,38 @@ function agreementScore(candidates){
 }
 
 function buildStoreLinks(release, candidates){
-  const q = encodeURIComponent(`${release.artist} ${release.title}`);
+  const raw = `${release.artist} ${release.title}`.trim();
+  const q = encodeURIComponent(raw);
+
   spotifySearch.href = `https://open.spotify.com/search/${q}`;
   youtubeSearch.href = `https://music.youtube.com/search?q=${q}`;
+  tidalSearch.href = `https://listen.tidal.com/search?q=${q}`;
+  amazonSearch.href = `https://music.amazon.com/search/${q}`;
+  soundcloudSearch.href = `https://soundcloud.com/search?q=${q}`;
+  bandcampSearch.href = `https://bandcamp.com/search?q=${q}`;
 
   const apple = candidates.find(x => x.source === 'apple' && x.exactUrl);
   if(apple){
     appleSearch.href = apple.exactUrl;
     appleLinkLabel.textContent = 'Abrir release ↗';
+    if(appleDestinationStatus) appleDestinationStatus.textContent = 'Enlace exacto encontrado';
   }else{
     appleSearch.href = `https://music.apple.com/us/search?term=${q}`;
     appleLinkLabel.textContent = 'Buscar release ↗';
+    if(appleDestinationStatus) appleDestinationStatus.textContent = 'Búsqueda preparada';
+  }
+
+  const deezer = candidates.find(x => x.source === 'deezer' && x.exactUrl);
+  if(deezer && deezerOpen){
+    deezerOpen.href = deezer.exactUrl;
+    deezerOpen.classList.remove('disabled');
+    deezerOpen.textContent = 'Abrir ↗';
+    if(deezerDestinationStatus) deezerDestinationStatus.textContent = 'Enlace exacto encontrado';
+  }else if(deezerOpen){
+    deezerOpen.href = `https://www.deezer.com/search/${q}`;
+    deezerOpen.classList.remove('disabled');
+    deezerOpen.textContent = 'Buscar ↗';
+    if(deezerDestinationStatus) deezerDestinationStatus.textContent = 'Búsqueda preparada';
   }
 }
 
@@ -518,4 +556,98 @@ document.getElementById('importReleaseBtn').addEventListener('click', () => {
   if(!lastResolvedRelease) return;
   step3.classList.add('active');
   showMessage('La coincidencia está lista. En la siguiente fase conectaremos “Importar” con la base de datos de RELEA para que aparezca automáticamente en tu catálogo.', 'success');
+});
+
+
+function validHttpUrl(value){
+  try{
+    const u = new URL(value);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  }catch(e){
+    return false;
+  }
+}
+
+function openManualEditor(platform=''){
+  manualEditingPlatform = platform;
+  manualPlatformTitle.textContent = platform ? `Agregar URL de ${platform}` : 'Agregar plataforma';
+  manualPlatformName.value = platform || '';
+  manualPlatformName.readOnly = Boolean(platform);
+  manualPlatformUrl.value = manualPlatformLinks[platform] || '';
+  manualPlatformMessage.hidden = true;
+  manualEditor.hidden = false;
+  manualPlatformUrl.focus();
+}
+
+function closeManualEditor(){
+  manualEditor.hidden = true;
+  manualEditingPlatform = '';
+  manualPlatformName.readOnly = false;
+}
+
+document.getElementById('addManualPlatformBtn')?.addEventListener('click', () => openManualEditor(''));
+
+document.querySelectorAll('[data-edit-platform]').forEach(btn => {
+  btn.addEventListener('click', () => openManualEditor(btn.dataset.editPlatform || ''));
+});
+
+document.getElementById('closeManualEditor')?.addEventListener('click', closeManualEditor);
+
+document.getElementById('saveManualPlatform')?.addEventListener('click', () => {
+  const name = manualPlatformName.value.trim();
+  const url = manualPlatformUrl.value.trim();
+
+  if(!name){
+    manualPlatformMessage.textContent = 'Escribe el nombre de la plataforma.';
+    manualPlatformMessage.className = 'manual-platform-message error';
+    manualPlatformMessage.hidden = false;
+    return;
+  }
+
+  if(!validHttpUrl(url)){
+    manualPlatformMessage.textContent = 'Pega una URL válida que empiece por http:// o https://';
+    manualPlatformMessage.className = 'manual-platform-message error';
+    manualPlatformMessage.hidden = false;
+    return;
+  }
+
+  manualPlatformLinks[name] = url;
+
+  const existingButton = [...document.querySelectorAll('[data-edit-platform]')]
+    .find(btn => btn.dataset.editPlatform === name);
+
+  if(existingButton){
+    const card = existingButton.closest('.destination-card');
+    const open = card?.querySelector('.destination-open');
+    const status = card?.querySelector('.destination-status');
+
+    if(open){
+      open.href = url;
+      open.textContent = 'Abrir ↗';
+      open.classList.remove('disabled');
+    }
+    if(status) status.textContent = 'URL agregada manualmente';
+  }else{
+    const grid = document.getElementById('platformDestinationGrid');
+    const card = document.createElement('div');
+    card.className = 'destination-card custom-destination';
+    card.innerHTML = `
+      <div class="destination-brand">
+        <div class="platform-fallback-logo">${name.slice(0,2).toUpperCase()}</div>
+        <div><strong>${name}</strong><span class="destination-status">URL agregada manualmente</span></div>
+      </div>
+      <div class="destination-actions">
+        <a class="destination-open" href="${url}" target="_blank" rel="noopener">Abrir ↗</a>
+        <button class="destination-edit" type="button" data-edit-platform="${name}">Editar</button>
+      </div>
+    `;
+    grid.appendChild(card);
+    card.querySelector('[data-edit-platform]').addEventListener('click', () => openManualEditor(name));
+  }
+
+  manualPlatformMessage.textContent = 'URL guardada en esta búsqueda.';
+  manualPlatformMessage.className = 'manual-platform-message success';
+  manualPlatformMessage.hidden = false;
+
+  setTimeout(closeManualEditor, 650);
 });
