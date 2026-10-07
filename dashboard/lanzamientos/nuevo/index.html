@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="dashboard-shell">
+
 <aside class="dashboard-sidebar">
   <a class="dashboard-brand" href="../../">
     <img src="../../../LOGO.png" alt="RELEA">
@@ -47,145 +48,303 @@
   <div class="sidebar-spacer"></div>
   <div class="sidebar-profile">
     <div class="profile-avatar">BR</div>
-    <div class="profile-copy">
-      <strong>Brainstorm</strong>
-      <span>Cuenta demo</span>
-    </div>
+    <div class="profile-copy"><strong>Brainstorm</strong><span>Cuenta demo</span></div>
   </div>
 </aside>
 
-<main class="dashboard-main">
+<main class="dashboard-main release-import-page">
   <header class="dashboard-topbar">
     <div class="page-heading">
       <div class="eyebrow">Lanzamientos</div>
-      <h1>Nuevo lanzamiento</h1>
-      <p>Importa tu música usando el UPC del release.</p>
+      <h1>Importar lanzamiento</h1>
+      <p>Encuentra tu release por UPC y revisa la información antes de guardarlo.</p>
+    </div>
+    <div class="topbar-actions">
+      <a class="db-button" href="../">← Volver al catálogo</a>
     </div>
   </header>
 
-  <section class="import-layout">
-    <div class="import-card">
-      <div class="import-step">Paso 1 de 3</div>
-      <h2>Busca tu lanzamiento</h2>
-      <p>Introduce el UPC. RELEA usará este código para localizar el lanzamiento y sus plataformas.</p>
+  <section class="release-import-shell">
+    <div class="release-import-main">
 
-      <form id="upcForm" class="upc-form">
-        <label for="upc">Código UPC</label>
-        <div class="upc-input-row">
-          <input id="upc" name="upc" type="text" inputmode="numeric" maxlength="14" placeholder="Ej. 123456789012" autocomplete="off" required>
-          <button class="db-button primary" type="submit">Buscar lanzamiento</button>
-        </div>
-        <small>Normalmente encontrarás el UPC en tu distribuidora.</small>
-      </form>
-
-      <div id="upcError" class="import-message error" hidden></div>
-    </div>
-
-    <div id="releaseResult" class="import-result" hidden>
-      <div class="import-result-head">
-        <div>
-          <div class="import-step">Resultado encontrado</div>
-          <h2>Revisa la información</h2>
-        </div>
-        <span class="found-badge">Encontrado</span>
+      <div class="import-progress">
+        <div class="progress-step active"><span>1</span><div><strong>Buscar</strong><small>UPC del lanzamiento</small></div></div>
+        <div class="progress-line"></div>
+        <div class="progress-step" id="step2"><span>2</span><div><strong>Revisar</strong><small>Metadata encontrada</small></div></div>
+        <div class="progress-line"></div>
+        <div class="progress-step" id="step3"><span>3</span><div><strong>Importar</strong><small>Agregar al catálogo</small></div></div>
       </div>
 
-      <div class="release-preview-card">
-        <div class="release-preview-art"></div>
-        <div class="release-preview-copy">
-          <span class="release-type">Single</span>
-          <h3>DON'T CALL ME</h3>
-          <p>Brainstorm</p>
+      <section class="upc-search-card">
+        <div class="upc-search-copy">
+          <span class="section-label">PASO 1</span>
+          <h2>Busca por UPC</h2>
+          <p>Pega el código de tu single, EP o álbum. RELEA consultará metadata pública del lanzamiento.</p>
+        </div>
 
-          <div class="release-detail-grid">
-            <div><span>UPC</span><strong id="resultUPC">123456789012</strong></div>
-            <div><span>Fecha</span><strong>Próximamente</strong></div>
-            <div><span>Tracks</span><strong>1</strong></div>
+        <form id="realUpcForm" class="real-upc-form">
+          <label for="realUpc">UPC</label>
+          <div class="real-upc-row">
+            <input id="realUpc" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="Ej. 824296904329" required>
+            <button id="searchReleaseBtn" class="db-button primary" type="submit">
+              <span class="button-text">Buscar lanzamiento</span>
+              <span class="button-spinner" hidden></span>
+            </button>
           </div>
-        </div>
-      </div>
+          <div class="upc-hint">Usa solo números. Normalmente el UPC tiene entre 12 y 14 dígitos.</div>
+        </form>
 
-      <div class="platform-detection">
-        <div class="section-mini-head">
+        <div id="lookupMessage" class="lookup-message" hidden></div>
+      </section>
+
+      <section id="lookupResult" class="lookup-result-card" hidden>
+        <div class="lookup-result-top">
           <div>
-            <span class="import-step">Plataformas</span>
-            <h3>Enlaces detectados</h3>
+            <span class="section-label">RESULTADO</span>
+            <h2>Revisa el lanzamiento</h2>
           </div>
-          <span class="platform-count">3 encontradas</span>
+          <span class="lookup-found">✓ Encontrado</span>
         </div>
 
-        <div class="detected-platforms">
-          <div class="detected-platform">
-            <img src="../../../spotify.webp" alt="Spotify">
-            <span>Spotify</span>
-            <strong>✓</strong>
+        <div class="lookup-release-card">
+          <div id="coverContainer" class="lookup-artwork">
+            <img id="coverArt" alt="Artwork del lanzamiento" hidden>
+            <div id="coverFallback" class="cover-fallback">♪</div>
           </div>
-          <div class="detected-platform">
-            <img src="../../../apple.webp" alt="Apple Music">
-            <span>Apple Music</span>
-            <strong>✓</strong>
-          </div>
-          <div class="detected-platform">
-            <img src="../../../youtube.webp" alt="YouTube Music">
-            <span>YouTube Music</span>
-            <strong>✓</strong>
+
+          <div class="lookup-release-info">
+            <span id="releaseType" class="release-kind">Release</span>
+            <h3 id="releaseTitle">Título</h3>
+            <p id="releaseArtist">Artista</p>
+
+            <div class="lookup-meta-grid">
+              <div><span>UPC</span><strong id="releaseBarcode">—</strong></div>
+              <div><span>Fecha</span><strong id="releaseDate">—</strong></div>
+              <div><span>Tracks</span><strong id="releaseTracks">—</strong></div>
+              <div><span>País</span><strong id="releaseCountry">—</strong></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="import-actions">
-        <button id="backButton" class="db-button" type="button">Buscar otro UPC</button>
-        <button class="db-button primary" type="button">Guardar y continuar →</button>
-      </div>
+        <div class="release-platform-search">
+          <div class="platform-search-head">
+            <div>
+              <span class="section-label">PLATAFORMAS</span>
+              <h3>Busca el release en tiendas</h3>
+              <p>RELEA usa el artista y título encontrados para preparar búsquedas directas.</p>
+            </div>
+          </div>
+
+          <div class="platform-search-grid">
+            <a id="spotifySearch" class="store-search-card" href="#" target="_blank" rel="noopener">
+              <img src="../../../spotify.webp" alt="Spotify">
+              <div><strong>Spotify</strong><span>Buscar release ↗</span></div>
+            </a>
+            <a id="appleSearch" class="store-search-card" href="#" target="_blank" rel="noopener">
+              <img src="../../../apple.webp" alt="Apple Music">
+              <div><strong>Apple Music</strong><span>Buscar release ↗</span></div>
+            </a>
+            <a id="youtubeSearch" class="store-search-card" href="#" target="_blank" rel="noopener">
+              <img src="../../../youtube.webp" alt="YouTube Music">
+              <div><strong>YouTube Music</strong><span>Buscar release ↗</span></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="lookup-actions">
+          <button id="searchAgainBtn" class="db-button" type="button">Buscar otro UPC</button>
+          <button id="importReleaseBtn" class="db-button primary" type="button">Importar lanzamiento →</button>
+        </div>
+      </section>
     </div>
 
-    <aside class="import-aside">
-      <div class="tip-card">
-        <div class="tip-icon">i</div>
-        <h3>¿Qué es un UPC?</h3>
-        <p>Es el identificador único de un single, EP o álbum. Tu distribuidora asigna uno a cada lanzamiento.</p>
-      </div>
+    <aside class="release-import-aside">
+      <section class="import-help-card">
+        <div class="help-bubble">i</div>
+        <h3>¿Dónde encuentro el UPC?</h3>
+        <p>Tu distribuidora asigna un UPC a cada release. Suele aparecer en la ficha del lanzamiento o en su metadata.</p>
+      </section>
 
-      <div class="flow-card">
-        <span class="import-step">Flujo RELEA</span>
-        <div class="flow-item active"><span>1</span><div><strong>Buscar</strong><small>UPC del lanzamiento</small></div></div>
-        <div class="flow-item"><span>2</span><div><strong>Revisar</strong><small>Datos y plataformas</small></div></div>
-        <div class="flow-item"><span>3</span><div><strong>Guardar</strong><small>Crear en tu catálogo</small></div></div>
-      </div>
+      <section class="import-help-card">
+        <span class="section-label">QUÉ BUSCAMOS</span>
+        <ul class="lookup-checklist">
+          <li><span>✓</span>Título y artista</li>
+          <li><span>✓</span>Fecha de lanzamiento</li>
+          <li><span>✓</span>Número de tracks</li>
+          <li><span>✓</span>Artwork cuando esté disponible</li>
+        </ul>
+      </section>
+
+      <section class="import-note-card">
+        <strong>Beta de búsqueda</strong>
+        <p>Esta versión consulta MusicBrainz. Algunos releases pueden no estar registrados allí todavía.</p>
+      </section>
     </aside>
   </section>
 </main>
 </div>
 
 <script>
-const form = document.getElementById('upcForm');
-const input = document.getElementById('upc');
-const result = document.getElementById('releaseResult');
-const errorBox = document.getElementById('upcError');
-const resultUPC = document.getElementById('resultUPC');
-const backButton = document.getElementById('backButton');
+const form = document.getElementById('realUpcForm');
+const input = document.getElementById('realUpc');
+const btn = document.getElementById('searchReleaseBtn');
+const btnText = btn.querySelector('.button-text');
+const spinner = btn.querySelector('.button-spinner');
+const message = document.getElementById('lookupMessage');
+const result = document.getElementById('lookupResult');
+const step2 = document.getElementById('step2');
+const step3 = document.getElementById('step3');
 
-form.addEventListener('submit', (e) => {
+const titleEl = document.getElementById('releaseTitle');
+const artistEl = document.getElementById('releaseArtist');
+const barcodeEl = document.getElementById('releaseBarcode');
+const dateEl = document.getElementById('releaseDate');
+const tracksEl = document.getElementById('releaseTracks');
+const countryEl = document.getElementById('releaseCountry');
+const typeEl = document.getElementById('releaseType');
+const coverArt = document.getElementById('coverArt');
+const coverFallback = document.getElementById('coverFallback');
+
+const spotifySearch = document.getElementById('spotifySearch');
+const appleSearch = document.getElementById('appleSearch');
+const youtubeSearch = document.getElementById('youtubeSearch');
+
+function setLoading(loading){
+  btn.disabled = loading;
+  btnText.textContent = loading ? 'Buscando...' : 'Buscar lanzamiento';
+  spinner.hidden = !loading;
+}
+
+function showMessage(text, type='error'){
+  message.textContent = text;
+  message.className = 'lookup-message ' + type;
+  message.hidden = false;
+}
+
+function clearMessage(){
+  message.hidden = true;
+}
+
+function normalizeUPC(value){
+  return value.replace(/\D/g,'');
+}
+
+function releaseArtistName(release){
+  const credits = release['artist-credit'] || [];
+  return credits.map(item => item.name || item.artist?.name).filter(Boolean).join(', ') || 'Artista desconocido';
+}
+
+function trackCount(release){
+  const media = release.media || [];
+  return media.reduce((sum, medium) => sum + (Number(medium['track-count']) || 0), 0) || '—';
+}
+
+function releaseType(release){
+  const status = release.status || '';
+  const media = release.media || [];
+  const count = media.reduce((sum, m) => sum + (Number(m['track-count']) || 0), 0);
+  if(count === 1) return 'Single';
+  if(count > 1 && count <= 6) return 'EP / Release';
+  if(count > 6) return 'Álbum';
+  return status || 'Release';
+}
+
+function buildStoreLinks(title, artist){
+  const q = encodeURIComponent(`${artist} ${title}`);
+  spotifySearch.href = `https://open.spotify.com/search/${q}`;
+  appleSearch.href = `https://music.apple.com/us/search?term=${q}`;
+  youtubeSearch.href = `https://music.youtube.com/search?q=${q}`;
+}
+
+async function loadCover(releaseId){
+  coverArt.hidden = true;
+  coverFallback.hidden = false;
+  const url = `https://coverartarchive.org/release/${releaseId}/front-500`;
+  try{
+    const response = await fetch(url, {method:'HEAD'});
+    if(response.ok){
+      coverArt.src = url;
+      coverArt.onload = () => {
+        coverArt.hidden = false;
+        coverFallback.hidden = true;
+      };
+    }
+  }catch(e){
+    // Keep fallback.
+  }
+}
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const value = input.value.replace(/\D/g, '');
+  clearMessage();
+  result.hidden = true;
 
-  if (value.length < 12 || value.length > 14) {
-    errorBox.textContent = 'Introduce un UPC válido de 12 a 14 dígitos.';
-    errorBox.hidden = false;
-    result.hidden = true;
+  const upc = normalizeUPC(input.value);
+  input.value = upc;
+
+  if(upc.length < 12 || upc.length > 14){
+    showMessage('Introduce un UPC válido de 12 a 14 dígitos.');
     return;
   }
 
-  errorBox.hidden = true;
-  resultUPC.textContent = value;
-  result.hidden = false;
-  result.scrollIntoView({behavior:'smooth', block:'nearest'});
+  setLoading(true);
+
+  try{
+    const query = encodeURIComponent(`barcode:${upc}`);
+    const url = `https://musicbrainz.org/ws/2/release/?query=${query}&fmt=json&limit=5`;
+    const response = await fetch(url, {
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if(!response.ok){
+      throw new Error('No pudimos consultar la base de datos en este momento.');
+    }
+
+    const data = await response.json();
+    const releases = data.releases || [];
+
+    if(!releases.length){
+      showMessage('No encontramos un lanzamiento con ese UPC en MusicBrainz. Puedes probar otro código o volver a intentarlo más tarde.', 'neutral');
+      return;
+    }
+
+    const release = releases[0];
+    const artist = releaseArtistName(release);
+    const title = release.title || 'Sin título';
+
+    titleEl.textContent = title;
+    artistEl.textContent = artist;
+    barcodeEl.textContent = release.barcode || upc;
+    dateEl.textContent = release.date || '—';
+    tracksEl.textContent = trackCount(release);
+    countryEl.textContent = release.country || '—';
+    typeEl.textContent = releaseType(release);
+
+    buildStoreLinks(title, artist);
+    loadCover(release.id);
+
+    step2.classList.add('active');
+    result.hidden = false;
+    result.scrollIntoView({behavior:'smooth', block:'start'});
+  }catch(error){
+    showMessage(error.message || 'Ocurrió un error al buscar el lanzamiento.');
+  }finally{
+    setLoading(false);
+  }
 });
 
-backButton.addEventListener('click', () => {
+document.getElementById('searchAgainBtn').addEventListener('click', () => {
   result.hidden = true;
+  step2.classList.remove('active');
+  step3.classList.remove('active');
   input.value = '';
   input.focus();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+document.getElementById('importReleaseBtn').addEventListener('click', () => {
+  step3.classList.add('active');
+  showMessage('El lanzamiento está listo para importarse. La persistencia real la conectaremos cuando integremos la base de datos de RELEA.', 'success');
 });
 </script>
 </body>
