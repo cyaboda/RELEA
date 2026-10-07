@@ -1,7 +1,1 @@
-
-document.querySelectorAll('form').forEach(form=>{
-  form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    alert('RELEA prototype: authentication UI is ready. Connect Supabase Auth next.');
-  });
-});
+document.querySelectorAll('form').forEach(form=>{form.addEventListener('submit',e=>{e.preventDefault();alert('RELEA: la interfaz está lista para conectar con Supabase Auth.');});});
