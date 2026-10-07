@@ -123,7 +123,7 @@ a{text-decoration:none;color:inherit}
   position:absolute;
   z-index:2;
   left:50%;
-  bottom:-150px;
+  bottom:-110px;
   transform:translateX(-50%);
   width:min(1380px, 96vw);
   margin:0;
@@ -373,7 +373,7 @@ a{text-decoration:none;color:inherit}
     padding:13px 27px;
   }
   .hero-preview{
-    bottom:-165px;
+    bottom:-125px;
   }
   .device-frame{
     height:390px;
@@ -394,7 +394,7 @@ a{text-decoration:none;color:inherit}
     margin:14px auto 16px;
   }
   .hero-preview{
-    bottom:-185px;
+    bottom:-145px;
   }
   .device-frame{
     height:355px;
