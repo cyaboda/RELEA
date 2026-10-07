@@ -991,3 +991,96 @@ button,input{font:inherit}
   .release-import-aside{grid-template-columns:1fr}
   .lookup-actions{flex-direction:column}
 }
+
+
+/* MULTI-SOURCE LOOKUP V5.1 */
+.result-badges{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.confidence-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 10px;
+  border-radius:999px;
+  font-size:10px;
+  border:1px solid rgba(255,255,255,.09);
+  color:#c0b8b0;
+  background:rgba(255,255,255,.03);
+}
+.confidence-badge.high{
+  color:#8de5a6;
+  background:rgba(70,184,103,.08);
+  border-color:rgba(70,184,103,.17);
+}
+.confidence-badge.good{
+  color:#a7d7ff;
+  background:rgba(65,133,207,.08);
+  border-color:rgba(65,133,207,.17);
+}
+.confidence-badge.partial{
+  color:#e2bf80;
+  background:rgba(212,158,65,.08);
+  border-color:rgba(212,158,65,.16);
+}
+.source-summary{
+  margin-top:16px;
+  padding:16px;
+  border-radius:18px;
+  border:1px solid var(--db-line-soft);
+  background:rgba(255,255,255,.012);
+}
+.source-summary-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+}
+.source-summary-head h3{
+  margin:5px 0 0;
+  font-size:17px;
+}
+.source-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:14px;
+}
+.source-card{
+  min-height:62px;
+  display:grid;
+  grid-template-columns:34px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:10px 11px;
+  border-radius:14px;
+  border:1px solid var(--db-line-soft);
+  background:#0a0b0d;
+}
+.source-card strong{display:block;font-size:11px}
+.source-card span{display:block;font-size:9px;color:#77716b;margin-top:4px}
+.source-card b{font-size:12px;color:#6e6963;font-weight:600}
+.source-card.found{
+  border-color:rgba(72,185,105,.14);
+  background:rgba(72,185,105,.025);
+}
+.source-card.found b{color:#75dc93}
+.source-card.miss{opacity:.62}
+.source-mark{
+  width:34px;height:34px;border-radius:11px;
+  display:grid;place-items:center;
+  font-size:10px;font-weight:700;
+  color:#f0ebe5;
+  border:1px solid rgba(255,255,255,.07);
+}
+.apple-mark{background:linear-gradient(145deg,#333,#111)}
+.deezer-mark{background:linear-gradient(145deg,#7654d8,#2d214c)}
+.mb-mark{background:linear-gradient(145deg,#c88d5d,#5e4434)}
+@media(max-width:820px){
+  .source-grid{grid-template-columns:1fr}
+  .result-badges{justify-content:flex-start}
+}
