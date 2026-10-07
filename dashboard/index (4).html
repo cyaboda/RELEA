@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="stylesheet" href="../dashboard.css">
+<title>Lanzamientos — RELEA</title>
+</head>
+<body>
+<div class="dashboard-shell">
+
+<aside class="dashboard-sidebar">
+  <a class="dashboard-brand" href="../">
+    <img src="../../LOGO.png" alt="RELEA">
+  </a>
+
+  <nav class="dashboard-nav">
+    <a href="../"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.5 9.8V21h13V9.8"></path></svg></span><span>Inicio</span></a>
+    <a class="active" href="./"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 9h8"></path><path d="M8 13h8"></path></svg></span><span>Lanzamientos</span></a>
+    <a href="../smart-links/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 1 0-7l1.2-1.2a5 5 0 1 1 7.1 7.1L17 13"></path><path d="M14 11a5 5 0 0 1 0 7l-1.2 1.2a5 5 0 1 1-7.1-7.1L7 11"></path></svg></span><span>Smart Links</span></a>
+    <a href="../campanas/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 15V9"></path><path d="M8 17V7"></path><path d="M12 14V10"></path><path d="M16 19V5"></path><path d="M20 13V11"></path></svg></span><span>Campañas</span></a>
+    <a href="../audiencia/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 19a4 4 0 0 0-8 0"></path><circle cx="12" cy="11" r="3.2"></circle><path d="M6.5 18a3.5 3.5 0 0 0-3-2.4"></path><path d="M17.5 18a3.5 3.5 0 0 1 3-2.4"></path></svg></span><span>Audiencia</span></a>
+    <a href="../estadisticas/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 18V9"></path><path d="M10 18V5"></path><path d="M15 18v-7"></path><path d="M20 18v-4"></path></svg></span><span>Estadísticas</span></a>
+    <a href="../ajustes/"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg></span><span>Ajustes</span></a>
+  </nav>
+
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-profile">
+    <div class="profile-avatar">BR</div>
+    <div class="profile-copy"><strong>Brainstorm</strong><span>Cuenta demo</span></div>
+  </div>
+</aside>
+
+<main class="dashboard-main releases-page">
+  <header class="dashboard-topbar catalog-heading">
+    <div class="page-heading">
+      <div class="eyebrow">Catálogo</div>
+      <h1>Lanzamientos</h1>
+      <p>Importa y administra tu catálogo desde RELEA.</p>
+    </div>
+    <div class="topbar-actions">
+      <a class="db-button primary" href="nuevo/">+ Nuevo lanzamiento</a>
+    </div>
+  </header>
+
+  <section class="catalog-toolbar">
+    <label class="catalog-search">
+      <span class="search-icon">⌕</span>
+      <input id="catalogSearch" type="search" placeholder="Buscar por título, artista o UPC...">
+    </label>
+
+    <select id="statusFilter" class="catalog-select">
+      <option value="all">Estado</option>
+      <option value="published">Publicado</option>
+      <option value="upcoming">Próximo</option>
+    </select>
+
+    <select id="dateSort" class="catalog-select">
+      <option value="newest">Fecha: más reciente</option>
+      <option value="oldest">Fecha: más antigua</option>
+    </select>
+
+    <select class="catalog-select catalog-view-select">
+      <option>Vista lista</option>
+      <option>Vista tarjetas</option>
+    </select>
+  </section>
+
+  <section class="catalog-stats">
+    <article class="catalog-stat">
+      <div class="catalog-stat-icon">◉</div>
+      <div><span>Total lanzamientos</span><strong>24</strong><small class="positive">↗ +33% <em>vs. mes anterior</em></small></div>
+    </article>
+    <article class="catalog-stat">
+      <div class="catalog-stat-icon green">●</div>
+      <div><span>Publicados</span><strong>18</strong><small>75% <em>del total</em></small></div>
+    </article>
+    <article class="catalog-stat">
+      <div class="catalog-stat-icon amber">◷</div>
+      <div><span>Próximos</span><strong>4</strong><small>17% <em>del total</em></small></div>
+    </article>
+    <article class="catalog-stat">
+      <div class="catalog-stat-icon green">↗</div>
+      <div><span>Smart Links activos</span><strong>16</strong><small>67% <em>del total</em></small></div>
+    </article>
+  </section>
+
+  <section class="catalog-table-card">
+    <div class="catalog-table-head">
+      <div>
+        <h2>Tu catálogo</h2>
+        <p>Gestiona tus lanzamientos, revisa su estado y analiza su rendimiento.</p>
+      </div>
+      <div class="catalog-pagination">
+        <span>Mostrando 3 de 24 lanzamientos</span>
+        <button aria-label="Anterior">‹</button>
+        <button aria-label="Siguiente">›</button>
+      </div>
+    </div>
+
+    <div class="release-table">
+      <div class="release-table-row release-table-header">
+        <div><input type="checkbox" aria-label="Seleccionar todos"></div>
+        <div>Lanzamiento</div>
+        <div>UPC</div>
+        <div>Fecha de lanzamiento</div>
+        <div>Estado</div>
+        <div>Smart Link</div>
+        <div>Clicks</div>
+        <div>Acciones</div>
+      </div>
+
+      <div class="release-table-row catalog-release" data-title="don't call me brainstorm 824296904329" data-status="published" data-date="2024-04-12">
+        <div><input type="checkbox" aria-label="Seleccionar Don't Call Me"></div>
+        <div class="catalog-release-main">
+          <div class="catalog-art art-main"></div>
+          <div><strong>DON'T CALL ME</strong><span>Brainstorm</span></div>
+        </div>
+        <div class="upc-cell">824296904329</div>
+        <div>12 abr 2024</div>
+        <div><span class="catalog-badge published"><i></i>Publicado</span></div>
+        <div><span class="catalog-badge link-active">↗ Activo</span></div>
+        <div class="click-cell"><strong>12.4K</strong><span class="positive">↗ +28%</span></div>
+        <div><button class="row-menu" aria-label="Acciones">•••</button></div>
+      </div>
+
+      <div class="release-table-row catalog-release" data-title="caroline brainstorm 198715664320" data-status="published" data-date="2024-06-28">
+        <div><input type="checkbox" aria-label="Seleccionar Caroline"></div>
+        <div class="catalog-release-main">
+          <div class="catalog-art art-caroline"></div>
+          <div><strong>Caroline</strong><span>Brainstorm</span></div>
+        </div>
+        <div class="upc-cell">198715664320</div>
+        <div>28 jun 2024</div>
+        <div><span class="catalog-badge published"><i></i>Publicado</span></div>
+        <div><span class="catalog-badge link-active">↗ Activo</span></div>
+        <div class="click-cell"><strong>8.7K</strong><span class="positive">↗ +12%</span></div>
+        <div><button class="row-menu" aria-label="Acciones">•••</button></div>
+      </div>
+
+      <div class="release-table-row catalog-release" data-title="still a kid brainstorm 506024612039" data-status="upcoming" data-date="2024-08-15">
+        <div><input type="checkbox" aria-label="Seleccionar Still a Kid"></div>
+        <div class="catalog-release-main">
+          <div class="catalog-art art-still"></div>
+          <div><strong>Still a Kid</strong><span>Brainstorm</span></div>
+        </div>
+        <div class="upc-cell">506024612039</div>
+        <div>15 ago 2024</div>
+        <div><span class="catalog-badge upcoming"><i></i>Próximo</span></div>
+        <div><span class="catalog-badge link-inactive">↗ Inactivo</span></div>
+        <div class="click-cell"><strong>—</strong><span>Aún no disponible</span></div>
+        <div><button class="row-menu" aria-label="Acciones">•••</button></div>
+      </div>
+
+      <div id="catalogNoResults" class="catalog-no-results" hidden>
+        No encontramos lanzamientos con esos filtros.
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<script>
+const search = document.getElementById('catalogSearch');
+const statusFilter = document.getElementById('statusFilter');
+const dateSort = document.getElementById('dateSort');
+const noResults = document.getElementById('catalogNoResults');
+const table = document.querySelector('.release-table');
+
+function applyCatalogFilters() {
+  const q = search.value.trim().toLowerCase();
+  const status = statusFilter.value;
+  const rows = [...document.querySelectorAll('.catalog-release')];
+
+  rows.forEach(row => {
+    const matchesText = !q || row.dataset.title.includes(q);
+    const matchesStatus = status === 'all' || row.dataset.status === status;
+    row.hidden = !(matchesText && matchesStatus);
+  });
+
+  const visible = rows.filter(r => !r.hidden);
+  visible.sort((a,b) => {
+    const da = new Date(a.dataset.date);
+    const db = new Date(b.dataset.date);
+    return dateSort.value === 'oldest' ? da - db : db - da;
+  });
+
+  visible.forEach(row => table.appendChild(row));
+  noResults.hidden = visible.length > 0;
+  table.appendChild(noResults);
+}
+
+search.addEventListener('input', applyCatalogFilters);
+statusFilter.addEventListener('change', applyCatalogFilters);
+dateSort.addEventListener('change', applyCatalogFilters);
+</script>
+</body>
+</html>

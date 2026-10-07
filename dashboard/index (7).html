@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="stylesheet" href="dashboard.css">
+<title>Dashboard — RELEA</title>
+</head>
+<body>
+<div class="dashboard-shell">
+
+<aside class="dashboard-sidebar">
+  <a class="dashboard-brand" href="../">
+    <img src="../LOGO.png" alt="RELEA">
+  </a>
+  <nav class="dashboard-nav">
+    <a class="active" href="./"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.5 9.8V21h13V9.8"></path></svg></span><span>Inicio</span></a><a class="" href="lanzamientos/"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M8 9h8"></path><path d="M8 13h8"></path></svg></span><span>Lanzamientos</span></a><a class="" href="smart-links/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 1 0-7l1.2-1.2a5 5 0 1 1 7.1 7.1L17 13"></path><path d="M14 11a5 5 0 0 1 0 7l-1.2 1.2a5 5 0 1 1-7.1-7.1L7 11"></path></svg></span><span>Smart Links</span></a><a class="" href="campanas/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 15V9"></path><path d="M8 17V7"></path><path d="M12 14V10"></path><path d="M16 19V5"></path><path d="M20 13V11"></path></svg></span><span>Campañas</span></a><a class="" href="audiencia/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 19a4 4 0 0 0-8 0"></path><circle cx="12" cy="11" r="3.2"></circle><path d="M6.5 18a3.5 3.5 0 0 0-3-2.4"></path><path d="M17.5 18a3.5 3.5 0 0 1 3-2.4"></path></svg></span><span>Audiencia</span></a><a class="" href="estadisticas/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 18V9"></path><path d="M10 18V5"></path><path d="M15 18v-7"></path><path d="M20 18v-4"></path></svg></span><span>Estadísticas</span></a><a class="" href="ajustes/"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg></span><span>Ajustes</span></a>
+  </nav>
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-profile">
+    <div class="profile-avatar">BR</div>
+    <div class="profile-copy">
+      <strong>Brainstorm</strong>
+      <span>Cuenta demo</span>
+    </div>
+  </div>
+</aside>
+
+<main class="dashboard-main">
+  <header class="dashboard-topbar">
+    <div class="page-heading">
+      <div class="eyebrow">Inicio</div>
+      <h1>Hola, Brainstorm.</h1>
+      <p>Un vistazo rápido a tus lanzamientos y enlaces.</p>
+    </div>
+    <div class="topbar-actions">
+      <button class="db-button">Ver perfil público</button>
+      <a class="db-button primary" href="lanzamientos/nuevo/">+ Nuevo lanzamiento</a>
+    </div>
+  </header>
+
+  <section class="stats-grid">
+    <article class="stat-card"><div class="stat-label">Lanzamientos</div><div class="stat-value">1</div><div class="stat-meta">Catálogo activo</div></article>
+    <article class="stat-card"><div class="stat-label">Smart Links</div><div class="stat-value">1</div><div class="stat-meta">1 activo</div></article>
+    <article class="stat-card"><div class="stat-label">Clics totales</div><div class="stat-value">1,248</div><div class="stat-meta positive">↗ +12% últimos 7 días</div></article>
+    <article class="stat-card"><div class="stat-label">Audiencia</div><div class="stat-value">892</div><div class="stat-meta">Usuarios únicos</div></article>
+  </section>
+
+  <section class="home-grid">
+    <div>
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Lanzamientos recientes</h2>
+          <a class="panel-link" href="lanzamientos/">Ver todos</a>
+        </div>
+        <div class="panel-body">
+          <div class="release-row">
+            <div class="release-art"></div>
+            <div class="release-copy"><strong>Don't Call Me</strong><span>Brainstorm · Single</span></div>
+            <div class="release-status"><span class="dot"></span>Smart Link activo</div>
+            <div class="release-clicks"><strong>1,248</strong><span>clics</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-grid">
+        <a class="quick-card" href="lanzamientos/nuevo/"><div class="quick-icon">＋</div><strong>Importar lanzamiento</strong><span>Busca por UPC y crea tu release.</span></a>
+        <a class="quick-card" href="smart-links/"><div class="quick-icon">↗</div><strong>Crear Smart Link</strong><span>Conecta todas tus plataformas.</span></a>
+        <a class="quick-card" href="campanas/"><div class="quick-icon">◎</div><strong>Nueva campaña</strong><span>Pre-save y promoción desde RELEA.</span></a>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Actividad reciente</h2></div>
+      <div class="panel-body activity-list">
+        <div class="activity-item"><div class="activity-icon">↗</div><div class="activity-copy"><strong>47 nuevos clics</strong><span>Don't Call Me · hoy</span></div></div>
+        <div class="activity-item"><div class="activity-icon">✓</div><div class="activity-copy"><strong>Spotify verificado</strong><span>Enlace encontrado correctamente</span></div></div>
+        <div class="activity-item"><div class="activity-icon">◎</div><div class="activity-copy"><strong>892 usuarios únicos</strong><span>Acumulado del lanzamiento</span></div></div>
+      </div>
+    </section>
+  </section>
+</main>
+</div>
+</body>
+</html>
