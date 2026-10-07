@@ -89,32 +89,32 @@ a{text-decoration:none;color:inherit}
 .hero-copy{
   position:relative;
   z-index:3;
-  width:min(980px, 92vw);
+  width:min(1040px, 92vw);
   margin:0 auto;
   text-align:center;
-  padding-top:clamp(34px,5.2vh,64px);
+  padding-top:clamp(18px,3.2vh,40px);
 }
 .eyebrow{
   font-size:12px;
   text-transform:uppercase;
   letter-spacing:.34em;
   color:#ccb8a8;
-  margin-bottom:26px;
+  margin-bottom:18px;
 }
 .hero h1{
   margin:0;
-  font-size:clamp(58px,7.1vw,112px);
-  line-height:.93;
+  font-size:clamp(54px,6.5vw,102px);
+  line-height:.92;
   letter-spacing:-.065em;
   font-weight:650;
 }
 .hero h1 span{color:#d6cec4}
 .hero p{
-  margin:26px auto 30px;
+  margin:18px auto 20px;
   max-width:860px;
   color:var(--muted);
-  font-size:clamp(17px,1.45vw,24px);
-  line-height:1.45;
+  font-size:clamp(16px,1.28vw,22px);
+  line-height:1.42;
 }
 .hero-actions{display:flex;justify-content:center}
 
@@ -123,23 +123,23 @@ a{text-decoration:none;color:inherit}
   position:absolute;
   z-index:2;
   left:50%;
-  bottom:-110px;
+  bottom:-78px;
   transform:translateX(-50%);
-  width:min(1380px, 96vw);
+  width:min(1460px, 98vw);
   margin:0;
   padding:0;
 }
 .device-frame{
   position:relative;
-  width:min(1320px,100%);
+  width:min(1385px,100%);
   margin:0 auto;
-  height:min(430px,46vh);
+  height:min(470px,52vh);
   border-radius:34px 34px 0 0;
   background:linear-gradient(180deg, rgba(20,21,24,.98), rgba(9,10,12,.98));
   border:1px solid rgba(255,255,255,.11);
   box-shadow:var(--shadow);
   overflow:hidden;
-  transform:perspective(1400px) rotateX(14deg);
+  transform:perspective(1400px) rotateX(11deg);
   transform-origin:center bottom;
 }
 .device-frame::before{
@@ -163,8 +163,8 @@ a{text-decoration:none;color:inherit}
   height:100%;
   display:grid;
   grid-template-columns:220px 1.25fr .95fr;
-  gap:22px;
-  padding:28px;
+  gap:20px;
+  padding:24px;
 }
 .sidebar{
   background:rgba(8,9,10,.7);
@@ -363,20 +363,20 @@ a{text-decoration:none;color:inherit}
     margin-bottom:16px;
   }
   .hero h1{
-    font-size:clamp(54px,6.4vw,94px);
+    font-size:clamp(50px,6.0vw,88px);
   }
   .hero p{
-    margin:18px auto 20px;
-    font-size:clamp(15px,1.25vw,20px);
+    margin:14px auto 16px;
+    font-size:clamp(15px,1.15vw,19px);
   }
   .hero-actions .button{
     padding:13px 27px;
   }
   .hero-preview{
-    bottom:-125px;
+    bottom:-92px;
   }
   .device-frame{
-    height:390px;
+    height:415px;
   }
 }
 
@@ -394,10 +394,10 @@ a{text-decoration:none;color:inherit}
     margin:14px auto 16px;
   }
   .hero-preview{
-    bottom:-145px;
+    bottom:-108px;
   }
   .device-frame{
-    height:355px;
+    height:385px;
   }
 }
 
