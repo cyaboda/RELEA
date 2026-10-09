@@ -142,14 +142,14 @@
               <h3>Enlaces del lanzamiento</h3>
               <p>RELEA intenta encontrar coincidencias. Si falta una tienda, puedes pegar su URL manualmente.</p>
             </div>
-            <button id="addManualPlatformBtn" class="mini-action" type="button">+ Agregar plataforma</button>
+            <div class="platform-head-actions"><button id="rescanPlatformsBtn" class="mini-action" type="button">↻ Reintentar autoscan</button><button id="addManualPlatformBtn" class="mini-action" type="button">+ Agregar plataforma</button></div>
           </div>
 
           <div id="platformDestinationGrid" class="platform-destination-grid">
             <div class="destination-card" data-platform="spotify">
               <div class="destination-brand">
                 <img src="/RELEA/spotify.webp" alt="Spotify">
-                <div><strong>Spotify</strong><span class="destination-status">Búsqueda preparada</span></div>
+                <div><strong>Spotify</strong><span id="spotifyDestinationStatus" class="destination-status">Autoscan pendiente</span></div>
               </div>
               <div class="destination-actions">
                 <a id="spotifySearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
@@ -171,7 +171,7 @@
             <div class="destination-card" data-platform="youtube">
               <div class="destination-brand">
                 <img src="/RELEA/youtube.webp" alt="YouTube Music">
-                <div><strong>YouTube Music</strong><span class="destination-status">Búsqueda preparada</span></div>
+                <div><strong>YouTube Music</strong><span id="youtubeDestinationStatus" class="destination-status">Autoscan pendiente</span></div>
               </div>
               <div class="destination-actions">
                 <a id="youtubeSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
@@ -193,7 +193,7 @@
             <div class="destination-card" data-platform="tidal">
               <div class="destination-brand">
                 <div class="platform-fallback-logo">T</div>
-                <div><strong>TIDAL</strong><span class="destination-status">Sin coincidencia automática</span></div>
+                <div><strong>TIDAL</strong><span id="tidalDestinationStatus" class="destination-status">Autoscan pendiente</span></div>
               </div>
               <div class="destination-actions">
                 <a id="tidalSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
@@ -204,7 +204,7 @@
             <div class="destination-card" data-platform="amazon">
               <div class="destination-brand">
                 <div class="platform-fallback-logo">a</div>
-                <div><strong>Amazon Music</strong><span class="destination-status">Sin coincidencia automática</span></div>
+                <div><strong>Amazon Music</strong><span id="amazonDestinationStatus" class="destination-status">Autoscan pendiente</span></div>
               </div>
               <div class="destination-actions">
                 <a id="amazonSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
@@ -215,7 +215,7 @@
             <div class="destination-card" data-platform="soundcloud">
               <div class="destination-brand">
                 <div class="platform-fallback-logo">SC</div>
-                <div><strong>SoundCloud</strong><span class="destination-status">Sin coincidencia automática</span></div>
+                <div><strong>SoundCloud</strong><span id="soundcloudDestinationStatus" class="destination-status">Autoscan pendiente</span></div>
               </div>
               <div class="destination-actions">
                 <a id="soundcloudSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
@@ -226,7 +226,7 @@
             <div class="destination-card" data-platform="bandcamp">
               <div class="destination-brand">
                 <div class="platform-fallback-logo">B</div>
-                <div><strong>Bandcamp</strong><span class="destination-status">Sin coincidencia automática</span></div>
+                <div><strong>Bandcamp</strong><span id="bandcampDestinationStatus" class="destination-status">Autoscan pendiente</span></div>
               </div>
               <div class="destination-actions">
                 <a id="bandcampSearch" class="destination-open" href="#" target="_blank" rel="noopener">Buscar ↗</a>
@@ -293,6 +293,6 @@
 </main>
 </div>
 
-<script src="/RELEA/dashboard/smart-links/nuevo/lookup-v523.js?v=600"></script>
+<script src="/RELEA/dashboard/smart-links/nuevo/lookup-v610.js?v=610"></script>
 </body>
 </html>
