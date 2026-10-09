@@ -1,18 +1,173 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="icon" href="../favicon.png"><link rel="stylesheet" href="dashboard.css"><title>Dashboard — RELEA</title></head><body>
-<div class="dashboard-shell"><aside class="dashboard-sidebar">
-<a class="dashboard-brand" href=""><img src="../LOGO.png" alt="RELEA"></a>
-<nav class="dashboard-nav"><a class="active" href=""><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.5 9.8V21h13V9.8"></path></svg></span><span>Inicio</span></a><a class="" href="smart-links/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 1 0-7l1.2-1.2a5 5 0 1 1 7.1 7.1L17 13"></path><path d="M14 11a5 5 0 0 1 0 7l-1.2 1.2a5 5 0 1 1-7.1-7.1L7 11"></path></svg></span><span>Smart Links</span></a><a class="" href="presave/"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h10"></path><path d="M8 3v4l-3 4v8h14v-8l-3-4V3"></path><path d="M9 14h6"></path></svg></span><span>Pre-save</span></a><a class="" href="dominios/"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a15 15 0 0 1 0 18"></path><path d="M12 3a15 15 0 0 0 0 18"></path></svg></span><span>Dominios</span></a><a class="" href="ajustes/"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg></span><span>Ajustes</span></a></nav>
-<div class="sidebar-spacer"></div>
-<div class="sidebar-profile"><div class="profile-avatar">BR</div><div class="profile-copy"><strong>Brainstorm</strong><span>Cuenta demo</span></div></div>
-</aside>
-<main class="dashboard-main"><header class="dashboard-topbar"><div class="page-heading"><div class="eyebrow">Inicio</div><h1>Hola, Brainstorm.</h1>
-<p>Gestiona Smart Links, pre-saves y dominios personalizados.</p></div><div class="topbar-actions"><a class="db-button primary" href="smart-links/nuevo/">+ Crear Smart Link</a></div></header>
-<section class="mvp-overview">
-<a class="mvp-card featured" href="smart-links/"><div class="mvp-card-top"><span class="mvp-icon">↗</span><span class="mvp-count">1</span></div><h2>Smart Links</h2><p>Todos tus enlaces de escucha.</p></a>
-<a class="mvp-card" href="presave/"><div class="mvp-card-top"><span class="mvp-icon">◎</span><span class="mvp-count">0</span></div><h2>Pre-save</h2><p>Campañas antes del estreno.</p></a>
-<a class="mvp-card" href="dominios/"><div class="mvp-card-top"><span class="mvp-icon">○</span><span class="mvp-count">0</span></div><h2>Dominios</h2><p>Publica con tu propia marca.</p></a>
-</section>
-<section class="panel"><div class="panel-head"><h2>Smart Links recientes</h2><a class="panel-link" href="smart-links/">Ver todos</a></div>
-<div class="panel-body"><div class="release-row"><div class="release-art"></div><div class="release-copy"><strong>Don't Call Me</strong><span>Brainstorm · relea.app/brainstorm/dont-call-me</span></div><div class="release-status"><span class="dot"></span>Activo</div><div class="release-clicks"><strong>1,248</strong><span>clics</span></div></div></div></section>
-</main></div></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+
+  <title>RELEA — Herramientas para artistas independientes</title>
+</head>
+<body class="home-page">
+  <div class="site-shell">
+
+<header class="site-header">
+  <a class="brand" href="./" aria-label="RELEA">
+    <img src="LOGO.png" alt="RELEA" class="brand-logo">
+  </a>
+
+  <nav class="main-nav" aria-label="Navegación principal">
+    <a href="solutions/">Soluciones</a>
+    <a href="pricing/">Precios</a>
+    <a href="help/">Ayuda</a>
+  </nav>
+
+  <div class="header-actions">
+    <a class="login-link" href="login/">Login</a>
+    <a class="button button-small" href="signup/">Start now</a>
+  </div>
+</header>
+
+    <main class="hero">
+      <section class="hero-copy">
+        <div class="eyebrow">Infraestructura musical para artistas independientes</div>
+        <h1>Haz que tu música<br><span>llegue más lejos.</span></h1>
+        <p>Crea Smart Links, lanza campañas y entiende a tu audiencia desde un solo espacio.</p>
+        <div class="hero-actions">
+          <a class="button" href="signup/">Start now&nbsp; ↗</a>
+        </div>
+      </section>
+
+      <section class="hero-preview" aria-label="Vista previa del producto RELEA">
+        <div class="device-frame">
+          <div class="screen">
+            <aside class="sidebar">
+              <div class="preview-brand">
+                <img src="LOGO.png" alt="RELEA" class="preview-logo">
+              </div>
+
+              <nav class="menu" aria-label="Vista previa de navegación">
+                <div class="menu-item active">
+                  <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 10.5 12 3l9 7.5"></path>
+                      <path d="M5.5 9.8V21h13V9.8"></path>
+                    </svg>
+                  </span>
+                  <span>Inicio</span>
+                </div>
+
+                <div class="menu-item">
+                  <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+                      <path d="M8 9h8"></path>
+                      <path d="M8 13h8"></path>
+                    </svg>
+                  </span>
+                  <span>Lanzamientos</span>
+                </div>
+
+                <div class="menu-item">
+                  <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10 13a5 5 0 0 1 0-7l1.2-1.2a5 5 0 1 1 7.1 7.1L17 13"></path>
+                      <path d="M14 11a5 5 0 0 1 0 7l-1.2 1.2a5 5 0 1 1-7.1-7.1L7 11"></path>
+                    </svg>
+                  </span>
+                  <span>Smart Links</span>
+                </div>
+
+                <div class="menu-item">
+                  <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 15V9"></path>
+                      <path d="M8 17V7"></path>
+                      <path d="M12 14V10"></path>
+                      <path d="M16 19V5"></path>
+                      <path d="M20 13V11"></path>
+                    </svg>
+                  </span>
+                  <span>Campañas</span>
+                </div>
+
+                <div class="menu-item">
+                  <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 19a4 4 0 0 0-8 0"></path>
+                      <circle cx="12" cy="11" r="3.2"></circle>
+                      <path d="M6.5 18a3.5 3.5 0 0 0-3-2.4"></path>
+                      <path d="M17.5 18a3.5 3.5 0 0 1 3-2.4"></path>
+                    </svg>
+                  </span>
+                  <span>Audiencia</span>
+                </div>
+
+                <div class="menu-item">
+                  <span class="menu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 18V9"></path>
+                      <path d="M10 18V5"></path>
+                      <path d="M15 18v-7"></path>
+                      <path d="M20 18v-4"></path>
+                    </svg>
+                  </span>
+                  <span>Estadísticas</span>
+                </div>
+              </nav>
+            </aside>
+
+            <article class="release-panel">
+              <div class="artwork" aria-label="Artwork del lanzamiento"></div>
+              <div class="release-meta">
+                <small>Single</small>
+                <h3>DON'T CALL ME</h3>
+                <div class="artist">Brainstorm</div>
+                <div class="status"><span class="dot"></span>Smart Link activo</div>
+
+                <div class="metrics">
+                  <div class="metric-box">
+                    <div class="metric-big">1,248</div>
+                    <div class="metric-label">clics totales</div>
+                  </div>
+
+                  <div class="metric-box">
+                    <div class="metric-up">↗ +12%</div>
+                    <div class="metric-label">últimos 7 días</div>
+                    <div class="bars" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <aside class="platform-panel">
+              <h4>Plataformas</h4>
+              <div class="platform-list">
+                <div class="platform-item">
+                  <div class="platform-logo-box"><img src="spotify.webp" alt="Spotify" class="platform-logo"></div>
+                  <div class="platform-name">Spotify</div>
+                  <div class="platform-check">✓</div>
+                </div>
+                <div class="platform-item">
+                  <div class="platform-logo-box"><img src="apple.webp" alt="Apple Music" class="platform-logo"></div>
+                  <div class="platform-name">Apple Music</div>
+                  <div class="platform-check">✓</div>
+                </div>
+                <div class="platform-item">
+                  <div class="platform-logo-box"><img src="youtube.webp" alt="YouTube Music" class="platform-logo"></div>
+                  <div class="platform-name">YouTube Music</div>
+                  <div class="platform-check">✓</div>
+                </div>
+              </div>
+              <div class="platform-url">relea.app/brainstorm/dont-call-me</div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
