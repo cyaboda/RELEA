@@ -1275,3 +1275,10 @@ button,input{font:inherit}
   border-color:rgba(94,138,207,.22);
 }
 #rescanPlatformsBtn:disabled{opacity:.55;cursor:wait}
+
+
+/* RELEA v6.2 backend connection */
+.spotify-mark{
+  background:rgba(30,215,96,.12);
+  color:#1ed760;
+}
